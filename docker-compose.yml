@@ -1,0 +1,7 @@
+version: '3.6'
+services:
+ java:
+  build: ./docker/java
+  tty: true
+  volumes:
+   - .:/usr/project
