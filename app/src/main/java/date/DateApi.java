@@ -24,8 +24,8 @@ public class DateApi {
     }
 
     /**
-     * 業務日付オブジェクトを返却するメソッドのスタブ
-     * @return 業務日付オブジェクト
+     * 営業日付オブジェクトを返却するメソッドのスタブ
+     * @return 営業日付オブジェクト
      */
     public BusinessDateResponse currentBusinessDate() {
         return null;

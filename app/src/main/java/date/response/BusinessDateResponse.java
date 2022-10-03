@@ -1,7 +1,7 @@
 package date.response;
 
 /**
- * 業務日付返却オブジェクト
+ * 営業日付返却オブジェクト
  * ※改修しないこと
  */
 public class BusinessDateResponse {
