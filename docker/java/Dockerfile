@@ -1,4 +1,4 @@
-FROM eclipse-temurin:18.0.1_10-jdk-jammy
+FROM eclipse-temurin:20.0.2_9-jdk-jammy
 
 RUN apt-get update
 RUN apt-get -y install curl

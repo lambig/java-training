@@ -21,14 +21,18 @@ repositories {
 
 dependencies {
     
+    // この辺は宣伝のために入れてる自作
     implementation("io.github.lambig:functional-interface-extension:1.1.1")
     implementation("io.github.lambig:Tuplite:1.0.0")
+    implementation("io.github.lambig:Patterns:1.1.0")
+    
+    // Rx演習用
+    implementation("io.reactivex.rxjava2:rxjava:2.2.21")
 
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
-    // https://mvnrepository.com/artifact/org.assertj/assertj-core
+    // AssertJの演習用 https://mvnrepository.com/artifact/org.assertj/assertj-core
     testImplementation("org.assertj:assertj-core:3.23.1")
-    // This dependency is used by the application.
 }
 
 application {
@@ -51,4 +55,8 @@ tasks {
             exceptionFormat = TestExceptionFormat.FULL
         }
     }   
+}
+
+tasks.withType<Wrapper> {
+    gradleVersion = gradle.gradleVersion
 }
