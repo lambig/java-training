@@ -2,6 +2,7 @@ package pickles.domain.service;
 
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -25,6 +26,7 @@ public class HarvestingProcess {
      * emitterが生きている限り0.3秒から3秒に一回、1個から6個の梅を吐き出し続けるobserverを返す。
      */
     public Observable<Set<Ume>> service() {
+        AtomicInteger count = new AtomicInteger(0);
         return Observable
                 .<Set<Ume>>create(emitter -> {
                     System.out.println("収穫待機開始");
@@ -35,9 +37,10 @@ public class HarvestingProcess {
                                 IntStream.range(0, this.batchSizeSupplier.upTo(5) + 1)
                                         .mapToObj(unused -> UUID.randomUUID().toString())
                                         .map(Ume::new)
+                                        .peek(unused -> count.incrementAndGet())
                                         .collect(Collectors.toSet()));
                     }
-                    System.out.println("収穫中止");
+                    System.out.println("収穫中止 総収穫個数: " + count);
                 })
                 .doOnNext(set -> System.out.println("収穫: " + set.size() + "個"));
     }
