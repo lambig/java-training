@@ -43,12 +43,9 @@ public final class Pickling {
                 .flatMap(umeSet -> Observable.fromIterable(umeSet))
                 .doOnNext(umeboshi -> wentOnTheLine.incrementAndGet())
                 .doOnNext(ume -> latch.incrementAndGet())
-                .flatMap(row -> this.curingProcess.cure(row).toObservable()
-                        .doOnError(error -> System.out.println(error.getMessage())), 5) // 5個まで同時に漬けられる
-                .flatMap(shiraumezuke -> this.dryingProcess.dry(shiraumezuke).toObservable()
-                        .doOnError(error -> System.out.println(error.getMessage())), 5)
-                .flatMap(shiraboshi -> this.marinatingProcess.marinate(shiraboshi).toObservable()
-                        .doOnError(error -> System.out.println(error.getMessage())), 5)
+                .flatMap(row -> this.curingProcess.cure(row).toObservable(), 5) // 5個まで同時に漬けられる
+                .flatMap(shiraumezuke -> this.dryingProcess.dry(shiraumezuke).toObservable(), 5)
+                .flatMap(shiraboshi -> this.marinatingProcess.marinate(shiraboshi).toObservable(), 5)
                 .doOnError(error -> {
                     System.out.println(error.getMessage());
                     latch.decrementAndGet();
