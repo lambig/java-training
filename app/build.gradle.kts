@@ -21,10 +21,8 @@ repositories {
 
 dependencies {
     
-    // この辺は宣伝のために入れてる自作
-    implementation("io.github.lambig:functional-interface-extension:1.1.1")
-    implementation("io.github.lambig:Tuplite:1.0.0")
-    implementation("io.github.lambig:Patterns:1.1.0")
+    // 宣伝のために入れてる自作ライブラリのバンドル
+    implementation("io.github.lambig:toolbox-java:0.1.2")
     
     // Rx演習用
     implementation("io.reactivex.rxjava2:rxjava:2.2.21")
