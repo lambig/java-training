@@ -16,8 +16,4 @@ public class Book {
     public String author() {
         return this.author;
     }
-
-    public boolean isSameAs(Book another) {
-        return this.author == another.author && this.title == another.title;
-    }
 }
