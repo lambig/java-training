@@ -1,0 +1,40 @@
+name: Training regression
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
+        with:
+          distribution: corretto
+          java-version: '17'
+      - name: Check exercise regressions without publishing answers
+        run: |
+          python3 -m unittest discover -s .github/ci -p "test_*.py"
+          python3 .github/ci/check_training.py
+      - name: Preserve sanitized regression summary
+        if: ${{ always() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: training-summary-${{ github.run_attempt }}
+          path: |
+            build/ci/training-summary.json
+          if-no-files-found: error
+          retention-days: 14
