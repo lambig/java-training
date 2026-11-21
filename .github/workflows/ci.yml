@@ -38,3 +38,7 @@ jobs:
             build/ci/training-summary.json
           if-no-files-found: error
           retention-days: 14
+      - name: Build development image and compile exercise sources
+        run: |
+          docker build -t training-ci docker/java
+          docker run --rm -v "$PWD:/workspace" -w /workspace training-ci sh ./gradlew --no-daemon --console=plain classes testClasses

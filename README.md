@@ -16,9 +16,9 @@ Extension Pack for javaの利用を推奨。(そのうち設定ファイルに�
    1. VSCodeのremote explorerで↑で起動したコンテナに接続する
       * ディレクトリはusr/project/appディレクトリを選択する
 1. コンテナ内での操作(appディレクトリ)
-   1. コンソールからgradle buildコマンドを実行する (npm iや composer installのようなつもりで)
+   1. コンソールから./gradlew buildコマンドを実行する (npm iや composer installのようなつもりで)
    1. プロダクトコードはsrc/main/java以下、テストコードはsrc/test/java以下に配置される。
-   1. gradle run testコマンドを実行する (これでテストが実行できる)
+   1. ./gradlew run testコマンドを実行する (これでテストが実行できる)
 
 ---
 
